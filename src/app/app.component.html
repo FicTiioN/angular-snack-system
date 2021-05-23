@@ -1,0 +1,45 @@
+<app-nav-bar></app-nav-bar>
+
+<app-side-bar [Menu]="listMenu">
+  <router-outlet></router-outlet>
+</app-side-bar>
+
+<!--
+<mat-toolbar color="primary">
+  <mat-toolbar-row class="mat-elevation-z2" style="z-index: 1;">
+    <span>Lanchonete</span>
+    <span class="spacer"></span>
+    <mat-icon class="icon" aria-hidden="false" aria-label="Example heart icon">favorite</mat-icon>
+    <mat-icon class="icon" aria-hidden="false" aria-label="Example delete icon">delete</mat-icon>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<mat-sidenav-container class="container negative-index">
+  <mat-sidenav #sidenav mode="side" opened class="sidenav" fixedInViewport="false" fixedTopGap="0" fixedBottomGap="0">
+    <img src="/assets/images/logo.png" class="logo-image" alt="Logo">
+    <mat-divider class="mt-20"></mat-divider>
+    <mat-selection-list #shoes [multiple]="false">
+      <mat-list-option *ngFor="let menu of listMenu" [value]="menu">
+        <mat-icon mat-list-icon>{{menu.icon}}</mat-icon>
+        {{menu.nome}}
+      </mat-list-option>
+    </mat-selection-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <header class="docs-primary-header component-page-header">
+      <h1>Página Inicial</h1>
+      <div class="breadcrumb">
+        <small><a mat-button>Home</a></small>/
+        <small><a mat-button>Teste</a></small>/
+        <small><a mat-button>Mais 1</a></small>
+      </div>
+    </header>
+
+    <div style="margin: 20px 50px;">
+
+      <router-outlet></router-outlet>
+      
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+-->

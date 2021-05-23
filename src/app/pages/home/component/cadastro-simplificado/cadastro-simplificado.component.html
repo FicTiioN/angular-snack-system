@@ -1,0 +1,109 @@
+<mat-card class="card">
+    <form [formGroup]="saleForm" (ngSubmit)="onFormSubmit()">
+        <table class="full-width" cellspacing="0">
+            <tr>
+                <td>
+                    <mat-form-field class="full-width" appearance="outline">
+                        <mat-label>Código</mat-label>
+                        <input formControlName="code" name="code" matInput placeholder="Ex. 0124">
+                        <mat-error *ngIf="saleForm.get('code').hasError">
+                            Código inválido
+                        </mat-error>
+                        <mat-spinner *ngIf="loadingCode" diameter="25" style="position: absolute; top: 0; right: 0;">
+                        </mat-spinner>
+                    </mat-form-field>
+                </td>
+                <td>
+                    <mat-form-field class="full-width" appearance="outline">
+                        <mat-label class="required">Produto</mat-label>
+                        <input matInput #product aria-label="Produto" name="product" [matAutocomplete]="auto"
+                            formControlName="product">
+                        <mat-error *ngIf="saleForm.get('product').hasError">
+                            Produto inválido
+                        </mat-error>
+                        <mat-autocomplete #auto="matAutocomplete"
+                            (optionSelected)="getOptionSelected($event.option.id)">
+                            <mat-option *ngFor="let product of filteredProducts | async" [value]="product.nome"
+                                [id]="product.id">
+                                <img class="example-option-img circle" aria-hidden [src]="product.image" height="30"
+                                    width="30">
+                                <span>{{product.nome}}</span> |
+                                <small>Valor: {{product.valor | currency}}</small>
+                            </mat-option>
+                        </mat-autocomplete>
+                    </mat-form-field>
+                </td>
+                <td>
+                    <mat-form-field class="full-width" appearance="outline">
+                        <mat-label class="required">Quantidade</mat-label>
+                        <input #amount formControlName="amount" name="amount" matInput type="number">
+                        <mat-error *ngIf="saleForm.get('amount').hasError">
+                            Quantidade inválido
+                        </mat-error>
+                    </mat-form-field>
+                </td>
+                <td>
+                    <mat-form-field class="full-width" appearance="outline">
+                        <mat-label class="required">Valor</mat-label>
+                        <input formControlName="value" value="{{ saleForm.get('value').value | currency }}" matInput
+                            placeholder="Ex. California">
+                    </mat-form-field>
+                </td>
+                <td style="width: 140px; text-align: center;">
+                    <button mat-raised-button color="primary" [disabled]="!saleForm.valid"
+                        class="margin: auto;">Cadastrar Venda</button>
+                </td>
+            </tr>
+        </table>
+    </form>
+</mat-card>
+<mat-card class="card" style="max-height: 500px; overflow-x: auto">
+    <table mat-table [dataSource]="dataSource">
+
+        <!-- Position Column -->
+        <ng-container matColumnDef="image">
+            <th mat-header-cell *matHeaderCellDef> </th>
+            <td mat-cell *matCellDef="let element" style="width: 10%;">
+                <img class="example-option-img" aria-hidden [src]="element._Produto.image" width="50" height="50"
+                    class="table-image circle">
+            </td>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="nome">
+            <th mat-header-cell *matHeaderCellDef> Nome </th>
+            <td mat-cell *matCellDef="let element" style="width: 45%;"> {{element._Produto.nome}} </td>
+        </ng-container>
+
+        <!-- Amount Column -->
+        <ng-container matColumnDef="quantidade">
+            <th mat-header-cell *matHeaderCellDef> Quantidade </th>
+            <td mat-cell *matCellDef="let element" style="width: 5%;"> {{element.quantidade}} </td>
+        </ng-container>
+
+        <!-- Weight Column -->
+        <ng-container matColumnDef="valor">
+            <th mat-header-cell *matHeaderCellDef> Valor </th>
+            <td mat-cell *matCellDef="let element" style="width: 10%;"> {{element._Produto.valor | currency }}
+            </td>
+        </ng-container>
+
+        <!-- Weight Column -->
+        <ng-container matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Ações </th>
+            <td mat-cell *matCellDef="let element" style="width: 30%; text-align: center;">
+                <button mat-raised-button color="primary" style="margin-right: 10px;">
+                    <mat-icon>edit</mat-icon>
+                    Editar
+                </button>
+                <button mat-raised-button color="warn">
+                    <mat-icon>delete</mat-icon>
+                    Remover
+                </button>
+            </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+</mat-card>
