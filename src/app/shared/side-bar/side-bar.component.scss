@@ -1,0 +1,60 @@
+
+.container {
+    position: absolute;
+    top: 64px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.sidenav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 240px;
+}
+
+.component-page-header{
+    display: block;
+    align-items: center;
+}
+
+.docs-primary-header h1 {
+    font-weight: 300;
+    margin: 0;
+    padding: 34px 8px;
+    font-size: 20px;
+    margin-left: 15px;
+}
+
+.docs-primary-header .breadcrumb{
+
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+.docs-primary-header a {
+    font-weight: 300;
+    margin: 0;
+    padding: 28px 8px;
+}
+
+.docs-primary-header{
+    background: #7b1fa2;
+}
+
+.negative-index {
+    z-index: 0;        
+}
+
+.logo-image{
+    height: 125px;
+    margin-left: 40px;
+    margin-top: 15px;
+}
+  
+[dir='rtl'] .example-option-img {
+    margin-right: 0;
+    margin-left: 8px;
+}
